@@ -16,6 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                @role('Admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('kategori.index')" :active="request()->routeIs('kategori.index')">
                         {{ __('Kategori') }}
@@ -26,6 +27,7 @@
                         {{ __('Produk') }}
                     </x-nav-link>
                 </div>
+                @endrole
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('penjualan.index')" :active="request()->routeIs('penjualan.index')">
                         {{ __('Penjualan') }}

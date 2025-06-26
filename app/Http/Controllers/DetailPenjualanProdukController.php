@@ -75,7 +75,7 @@ class DetailPenjualanProdukController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'id_penjualan' => 'required|exists:penjualans,id',
+                'id_penjualan' => 'required|exists:penjualan,id',
                 'id_produk' => 'required|exists:produk,id',
                 'jumlah_terjual' => 'required|integer|min:1',
             ]);
