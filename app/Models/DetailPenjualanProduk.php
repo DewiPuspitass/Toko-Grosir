@@ -36,6 +36,6 @@ class DetailPenjualanProduk extends Model
 
     public function produk(): BelongsTo
     {
-        return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
+        return $this->belongsTo(Produk::class, 'id_produk', 'id');
     }
 }

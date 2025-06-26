@@ -12,7 +12,7 @@ class Produk extends Model
     use HasFactory;
 
     protected $table = 'produk';
-    protected $primaryKey = 'id_produk';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'nama_produk',
@@ -20,9 +20,8 @@ class Produk extends Model
         'harga_beli',
         'harga_jual',
         'stok',
-        'satuan',
-        'id_kategori',
         'gambar_produk',
+        'kategori_id',
         'aktif',
     ];
 
@@ -35,11 +34,11 @@ class Produk extends Model
 
     public function kategori(): BelongsTo
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 
     public function detailPenjualanProduk(): HasMany
     {
-        return $this->hasMany(DetailPenjualanProduk::class, 'id_produk', 'id_produk');
+        return $this->hasMany(DetailPenjualanProduk::class, 'id_produk', 'id');
     }
 }
