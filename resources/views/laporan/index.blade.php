@@ -61,6 +61,61 @@
                         @endif
                     </div>
 
+                    
+                    <h3 class="font-semibold text-lg text-gray-800 mb-4">Keuntungan Mingguan</h3>
+                    <div class="overflow-x-auto mb-6">
+                        @if ($keuntunganMingguan->isEmpty())
+                            <p class="text-gray-500">Tidak ada data keuntungan mingguan untuk periode ini.</p>
+                        @else
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pendapatan Mingguan</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keuntungan Mingguan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @foreach ($keuntunganMingguan as $data)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ \Carbon\Carbon::parse($data->tanggal)->format('d M Y') }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp {{ number_format($data->total_pendapatan_mingguan, 2, ',', '.') }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp {{ number_format($data->total_keuntungan_mingguan, 2, ',', '.') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
+
+                    
+                    <h3 class="font-semibold text-lg text-gray-800 mb-4">Keuntungan Bulanan</h3>
+                    <div class="overflow-x-auto mb-6">
+                        @if ($keuntunganBulanan->isEmpty())
+                            <p class="text-gray-500">Tidak ada data keuntungan bulanan untuk periode ini.</p>
+                        @else
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pendapatan Bulanan</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keuntungan Bulanan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @foreach ($keuntunganBulanan as $data)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ \Carbon\Carbon::parse($data->tanggal)->format('d M Y') }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp {{ number_format($data->total_pendapatan_bulanan, 2, ',', '.') }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp {{ number_format($data->total_keuntungan_bulanan, 2, ',', '.') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
+
+
                     <h3 class="font-semibold text-lg text-gray-800 mb-4">Produk Terlaris (Top 5)</h3>
                     <div class="overflow-x-auto mb-6">
                         @if ($produkTerlaris->isEmpty())

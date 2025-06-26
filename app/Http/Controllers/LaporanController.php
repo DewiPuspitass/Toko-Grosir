@@ -40,6 +40,41 @@ class LaporanController extends Controller
         ->sortBy('tanggal')
         ->values();
 
+        $keuntunganMingguan = Penjualan::select(
+        DB::raw("YEAR(tanggal_penjualan) as tahun"),
+        DB::raw("WEEK(tanggal_penjualan, 1) as minggu_ke"),
+        DB::raw("SUM(total_pendapatan) as total_pendapatan_mingguan"),
+        DB::raw("SUM(total_keuntungan) as total_keuntungan_mingguan")
+        )
+        ->whereBetween('tanggal_penjualan', [$startDate, $endDate])
+        ->groupBy('tahun', 'minggu_ke')
+        ->orderBy('tahun', 'desc')
+        ->orderBy('minggu_ke', 'desc')
+        ->take(5)
+        ->get()
+        ->sortBy(function ($item) {
+            return $item->tahun . '-' . str_pad($item->minggu_ke, 2, '0', STR_PAD_LEFT);
+        })
+        ->values();
+
+        $keuntunganBulanan = Penjualan::select(
+        DB::raw("YEAR(tanggal_penjualan) as tahun"),
+        DB::raw("MONTH(tanggal_penjualan) as bulan"),
+        DB::raw("SUM(total_pendapatan) as total_pendapatan_bulanan"),
+        DB::raw("SUM(total_keuntungan) as total_keuntungan_bulanan")
+        )
+        ->whereBetween('tanggal_penjualan', [$startDate, $endDate])
+        ->groupBy('tahun', 'bulan')
+        ->orderBy('tahun', 'desc')
+        ->orderBy('bulan', 'desc')
+        ->take(5)
+        ->get()
+        ->sortBy(function ($item) {
+            return $item->tahun . '-' . str_pad($item->bulan, 2, '0', STR_PAD_LEFT);
+        })
+        ->values();
+
+
         $produkTerlaris = DetailPenjualanProduk::select(
                 'produk.nama_produk',
                 DB::raw('SUM(detail_penjualan_produk.jumlah_terjual) as total_terjual')
@@ -69,6 +104,8 @@ class LaporanController extends Controller
             'totalPendapatan',
             'totalKeuntungan',
             'keuntunganHarian',
+            'keuntunganMingguan',
+            'keuntunganBulanan',
             'produkTerlaris',
             'kategoriTerlaris',
             'startDate',
