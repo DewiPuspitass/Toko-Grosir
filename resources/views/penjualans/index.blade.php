@@ -48,9 +48,11 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Total Keuntungan
                                     </th>
+                                    @role("Admin")
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Aksi
-                                    </th>
+                                        </th>
+                                    @endrole
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -68,10 +70,8 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ number_format($penjualan->total_keuntungan, 2) }}
                                         </td>
+                                        @role("Admin")
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                @role("Admin")
-                                                    <a href="{{ route('penjualan.show', $penjualan->id) }}" class="text-blue-600 hover:text-blue-900 mr-2">Detail</a>
-                                                @endrole
                                                 <a href="{{ route('penjualan.edit', $penjualan->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
                                                 <form action="{{ route('penjualan.destroy', $penjualan->id) }}" method="POST" class="inline">
                                                     @csrf
@@ -79,6 +79,7 @@
                                                     <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus penjualan ini?')">Hapus</button>
                                                 </form>
                                             </td>
+                                            @endrole
                                     </tr>
                                 @empty
                                     <tr>
