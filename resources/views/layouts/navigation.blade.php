@@ -26,6 +26,16 @@
                         {{ __('Produk') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('penjualan.index')" :active="request()->routeIs('penjualan.index')">
+                        {{ __('Penjualan') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('detail_penjualan_produk.index')" :active="request()->routeIs('detail_penjualan_produk.index')">
+                        {{ __('Detail Penjualan') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

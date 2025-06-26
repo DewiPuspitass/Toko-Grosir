@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\DetailPenjualanProdukController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 Route::get('/', function () {
@@ -28,6 +32,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/produk/{produk}/edit', [ProdukController::class, 'edit'])->name('produk.edit');
     Route::put('/produk/{produk}', [ProdukController::class, 'update'])->name('produk.update');
     Route::delete('/produk', [ProdukController::class, 'destroy'])->name('produk.destroy');
+
+    Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
+    Route::get('/penjualan_tambah', [PenjualanController::class, 'create'])->name('penjualan.create');
+    Route::post('/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
+    Route::get('/penjualan/{penjualan}', [PenjualanController::class, 'show'])->name('penjualan.show');
+    Route::get('/penjualan/{penjualan}/edit', [PenjualanController::class, 'edit'])->name('penjualan.edit');
+    Route::put('/penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualan.update');
+    Route::delete('/penjualan/{penjualan}', [PenjualanController::class, 'destroy'])->name('penjualan.destroy');
+
+    Route::get('/detail_penjualan_produk', [DetailPenjualanProdukController::class, 'index'])->name('detail_penjualan_produk.index');
+    Route::get('/detail_penjualan_produk_tambah', [DetailPenjualanProdukController::class, 'create'])->name('detail_penjualan_produk.create');
+    Route::post('/detail_penjualan_produk', [DetailPenjualanProdukController::class, 'store'])->name('detail_penjualan_produk.store');
+    Route::get('/detail_penjualan_produk/{detailPenjualanProduk}', [DetailPenjualanProdukController::class, 'show'])->name('detail_penjualan_produk.show');
+    Route::get('/detail_penjualan_produk/{detailPenjualanProduk}/edit', [DetailPenjualanProdukController::class, 'edit'])->name('detail_penjualan_produk.edit');
+    Route::put('/detail_penjualan_produk/{detailPenjualanProduk}', [DetailPenjualanProdukController::class, 'update'])->name('detail_penjualan_produk.update');
+    Route::delete('/detail_penjualan_produk/{detailPenjualanProduk}', [DetailPenjualanProdukController::class, 'destroy'])->name('detail_penjualan_produk.destroy');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

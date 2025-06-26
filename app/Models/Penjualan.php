@@ -23,7 +23,7 @@ class Penjualan extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'id_penjualan';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
