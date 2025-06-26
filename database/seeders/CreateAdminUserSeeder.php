@@ -10,33 +10,28 @@ use Spatie\Permission\Models\Permission;
 
 class CreateAdminUserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $user = User::create([
-            'name' => 'Admin', 
+        $adminUser = User::create([
+            'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345678')
+            'password' => bcrypt('password')
         ]);
 
-        $user2 = User::create([
-            'name' => 'Viewer', 
+        $viewerUser = User::create([
+            'name' => 'Viewer',
             'email' => 'viewer@gmail.com',
             'password' => bcrypt('12345678')
         ]);
-        
-        $role = Role::create(['name' => 'Admin']);
-        $role2 = Role::create(['name' => 'Viewer']);
-         
-        $permissions = Permission::pluck('id','id')->all();
-       
-        $role->syncPermissions($permissions);
-        $role2->syncPermissions($permissions);
-         
-        $user->assignRole([$role->id]);
-        $user2->assignRole([$role2->id]);
-        
+
+        $adminRole = Role::create(['name' => 'Admin']);
+        $viewerRole = Role::create(['name' => 'Viewer']);
+
+        $allPermissions = Permission::pluck('id', 'id')->all();
+
+        $adminRole->syncPermissions($allPermissions);
+
+        $adminUser->assignRole([$adminRole->id]);
+        $viewerUser->assignRole([$viewerRole->id]);
     }
 }
