@@ -163,6 +163,26 @@
                             </table>
                         @endif
                     </div>
+
+                    <form action="{{ route('laporan.export') }}" method="GET" class="flex flex-wrap items-center gap-3 mb-4">
+
+                    <label>
+                        Dari Tanggal:
+                        <input type="date" name="start_date" value="{{ request('start_date', $startDate->format('Y-m-d')) }}"
+                            class="border rounded px-2 py-1">
+                    </label>
+
+                    <label>
+                        Sampai Tanggal:
+                        <input type="date" name="end_date" value="{{ request('end_date', $endDate->format('Y-m-d')) }}"
+                            class="border rounded px-2 py-1">
+                    </label>
+
+                    <x-primary-button type="submit">
+                        {{ __('Export Excel') }}
+                    </x-primary-button>
+                </form>
+
                 </div>
             </div>
         </div>

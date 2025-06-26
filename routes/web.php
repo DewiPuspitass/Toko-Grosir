@@ -48,14 +48,14 @@ Route::middleware('auth', 'role:Admin')->group(function () {
     Route::put('/detail_penjualan_produk/{detailPenjualanProduk}', [DetailPenjualanProdukController::class, 'update'])->name('detail_penjualan_produk.update');
     Route::delete('/detail_penjualan_produk/{detailPenjualanProduk}', [DetailPenjualanProdukController::class, 'destroy'])->name('detail_penjualan_produk.destroy');
 
-    Route::get('/laporan/profit', [LaporanController::class, 'showProfitReport'])->name('laporan.profit');
-
    
 });
 Route::middleware('auth')->group(function () {
     Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
     Route::get('/detail_penjualan_produk', [DetailPenjualanProdukController::class, 'index'])->name('detail_penjualan_produk.index');
-    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');    
+    Route::get('/laporan/profit', [LaporanController::class, 'showProfitReport'])->name('laporan.profit');
+    Route::get('/laporan/export', [LaporanController::class, 'exportProfitExcel'])->name('laporan.export');    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

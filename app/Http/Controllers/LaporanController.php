@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Penjualan;
 use App\Models\DetailPenjualanProduk;
-use App\Models\Produk;
-use App\Models\Kategori;
-use Symfony\Component\HttpFoundation\StreamedResponse; 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ProfitReportExport;
 
 class LaporanController extends Controller
 {
@@ -150,5 +149,18 @@ class LaporanController extends Controller
         $reportData = $query->get();
 
         return view('laporan.profit_report', compact('reportData', 'startDate', 'endDate', 'period'));
+    }
+    
+    public function exportProfitExcel(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        $start = $request->start_date;
+        $end = $request->end_date;
+
+        return Excel::download(new ProfitReportExport($start, $end), "laporan_profit_{$start}_{$end}.xlsx");
     }
 }
