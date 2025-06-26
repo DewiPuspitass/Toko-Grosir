@@ -25,7 +25,8 @@ class PermissionTableSeeder extends Seeder
            'kategori-list',
            'kategori-create',
            'kategori-edit',
-           'kategori-delete'
+           'kategori-delete',
+           
         ];
         
         foreach ($permissions as $permission) {

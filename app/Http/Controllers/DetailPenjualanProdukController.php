@@ -58,18 +58,12 @@ class DetailPenjualanProdukController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(DetailPenjualanProduk $detailPenjualanProduk)
     {
         $detailPenjualanProduk->load('penjualan', 'produk');
         return view('detail_penjualan_produks.show', compact('detailPenjualanProduk'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(DetailPenjualanProduk $detailPenjualanProduk)
     {
         $penjualans = Penjualan::all();
@@ -77,9 +71,6 @@ class DetailPenjualanProdukController extends Controller
         return view('detail_penjualan_produks.edit', compact('detailPenjualanProduk', 'penjualans', 'produks'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, DetailPenjualanProduk $detailPenjualanProduk)
     {
         try {
@@ -106,16 +97,10 @@ class DetailPenjualanProdukController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(DetailPenjualanProduk $detailPenjualanProduk)
     {
-        try {
-            $detailPenjualanProduk->delete();
-            return redirect()->route('detail_penjualan_produk.index')->with('success', 'Detail penjualan produk berhasil dihapus!');
-        } catch (\Exception | QueryException $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus detail penjualan produk: ' . $e->getMessage());
-        }
+        $detailPenjualanProduk->delete();
+        return redirect()->route('detail_penjualan_produk.index')->with('success', 'Detail penjualan produk berhasil dihapus!');
+       
     }
 }

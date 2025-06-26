@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penjualan;
-use App\Models\User; // Asumsi model untuk admin
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use Carbon\Carbon; // Untuk format tanggal
+use Carbon\Carbon;
 
 class PenjualanController extends Controller
 {
