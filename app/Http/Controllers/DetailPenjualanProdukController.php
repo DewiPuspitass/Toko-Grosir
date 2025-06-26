@@ -10,6 +10,13 @@ use Illuminate\Validation\ValidationException;
 
 class DetailPenjualanProdukController extends Controller
 {
+     function __construct()
+    {
+        $this->middleware('permission:detail-penjualan-produk-list', ['only' => ['index','show']]);
+        $this->middleware('permission:detail-penjualan-produk-create', ['only' => ['create','store']]);
+        $this->middleware('permission:detail-penjualan-produk-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:detail-penjualan-produk-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $details = DetailPenjualanProduk::with('penjualan', 'produk')->paginate(10);

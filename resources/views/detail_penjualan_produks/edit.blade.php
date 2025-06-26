@@ -46,13 +46,13 @@
                         </div>
 
                         <div class="mb-4">
-                            <x-input-label for="harga_jual" :value="__('Harga Jual Saat Itu')" />
+                            <x-input-label for="harga_jual" :value="__('Harga Jual')" />
                             <x-text-input id="harga_jual" class="block mt-1 w-full" type="number" step="0.01" name="harga_jual" :value="old('harga_jual', $detailPenjualanProduk->harga_jual)" required />
                             <x-input-error :messages="$errors->get('harga_jual')" class="mt-2" />
                         </div>
 
                         <div class="mb-4">
-                            <x-input-label for="harga_beli" :value="__('Harga Beli Saat Itu')" />
+                            <x-input-label for="harga_beli" :value="__('Harga Beli')" />
                             <x-text-input id="harga_beli" class="block mt-1 w-full" type="number" step="0.01" name="harga_beli" :value="old('harga_beli', $detailPenjualanProduk->harga_beli)" required />
                             <x-input-error :messages="$errors->get('harga_beli')" class="mt-2" />
                         </div>

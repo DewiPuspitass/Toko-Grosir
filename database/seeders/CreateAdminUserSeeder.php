@@ -10,6 +10,9 @@ use Spatie\Permission\Models\Permission;
 
 class CreateAdminUserSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
         $adminUser = User::create([
@@ -31,7 +34,18 @@ class CreateAdminUserSeeder extends Seeder
 
         $adminRole->syncPermissions($allPermissions);
 
+        $viewerPermissionNames = [
+            'penjualan-list',
+            'detail-penjualan-produk-list',
+            'laporan-list',
+        ];
+
+        
+        $viewerPermissions = Permission::whereIn('name', $viewerPermissionNames)->get();
+
+        $viewerRole->syncPermissions($viewerPermissions);
+
         $adminUser->assignRole([$adminRole->id]);
-        $viewerUser->assignRole([$viewerRole->id]);
+        $viewerUser->assignRole($viewerRole);
     }
 }

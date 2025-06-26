@@ -50,9 +50,9 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                            <a href="{{ route('kategori.edit', $kategori->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
-                                            <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST" class="inline">
-                                                @csrf
-                                                @method('DELETE')
+                                            <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">Hapus</button>
                                             </form>
                                         </td>

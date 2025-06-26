@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string("harga_beli");
             $table->string("harga_jual");
             $table->string("stok");
-            $table->string("harga");
             $table->string("gambar_produk");
             $table->foreignId("kategori_id")->constrained("kategori")->onDelete("cascade");
             $table->boolean("aktif");

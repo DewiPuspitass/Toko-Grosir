@@ -19,7 +19,6 @@ class Penjualan extends Model
         'tanggal_penjualan',
         'total_pendapatan',
         'total_keuntungan',
-        'id_admin',
     ];
 
     protected $casts = [

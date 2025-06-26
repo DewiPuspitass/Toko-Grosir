@@ -16,7 +16,6 @@ return new class extends Migration
             $table->date('tanggal_penjualan');
             $table->decimal('total_pendapatan', 15, 2);
             $table->decimal('total_keuntungan', 15, 2);
-            $table->foreignId('id_admin')->constrained('users')->onDelete('cascade');
 
             $table->timestamps();
         });

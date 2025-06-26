@@ -10,6 +10,14 @@ use Carbon\Carbon;
 
 class PenjualanController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:penjualan-list', ['only' => ['index','show']]);
+         $this->middleware('permission:penjualan-create', ['only' => ['create','store']]);
+         $this->middleware('permission:penjualan-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:penjualan-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $penjualans = Penjualan::with('pengguna', 'detailPenjualanProduk.produk')->paginate(10);
@@ -29,7 +37,6 @@ class PenjualanController extends Controller
                 'tanggal_penjualan' => 'required|date',
                 'total_pendapatan' => 'required|numeric|min:0',
                 'total_keuntungan' => 'required|numeric|min:0',
-                'id_admin' => 'required|exists:users,id',
             ]);
 
             Penjualan::create($validatedData);
@@ -62,7 +69,6 @@ class PenjualanController extends Controller
                 'tanggal_penjualan' => 'required|date',
                 'total_pendapatan' => 'required|numeric|min:0',
                 'total_keuntungan' => 'required|numeric|min:0',
-                'id_admin' => 'required|exists:users,id',
             ]);
 
             // dd($validatedData);

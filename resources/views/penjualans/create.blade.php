@@ -29,20 +29,6 @@
                             <x-text-input id="total_keuntungan" class="block mt-1 w-full" type="number" step="0.01" name="total_keuntungan" :value="old('total_keuntungan')" required />
                             <x-input-error :messages="$errors->get('total_keuntungan')" class="mt-2" />
                         </div>
-
-                        <div class="mb-4">
-                            <x-input-label for="id_admin" :value="__('Admin')" />
-                            <select id="id_admin" name="id_admin" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
-                                <option value="">Pilih Admin</option>
-                                @foreach($admins as $admin)
-                                    <option value="{{ $admin->id }}" {{ old('id_admin') == $admin->id ? 'selected' : '' }}>
-                                        {{ $admin->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('id_admin')" class="mt-2" />
-                        </div>
-
                         <div class="flex items-center justify-end mt-4">
                             <a href="{{ route('penjualan.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-2">
                                 {{ __('Batal') }}
